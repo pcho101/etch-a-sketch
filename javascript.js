@@ -12,6 +12,12 @@ for (let i = 0; i < SIZE * SIZE; i++) {
     grid.classList.add('grid');
     grid.style.backgroundColor = 'purple';
     grid.style.border = '1px solid beige';
+    grid.addEventListener('mouseenter', () => {
+        changeColor(grid);
+    });
     container.appendChild(grid);
 }
 
+function changeColor(grid) {
+    grid.style.backgroundColor = 'red';
+}
