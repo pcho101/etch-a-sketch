@@ -1,7 +1,7 @@
 const body = document.querySelector('body');
 const container = document.querySelector('#container');
 const button = document.createElement('button');
-const gridSize = 8;
+const gridSize = 16;
 
 body.prepend(button);
 button.textContent = 'Change Size';
@@ -18,17 +18,28 @@ function generateGrid(gridSize) {
     for (let i = 0; i < gridSize * gridSize; i++) {
         let grid = document.createElement('div');
         grid.classList.add('grid');
-        grid.style.backgroundColor = 'purple';
-        grid.style.border = '1px solid beige';
         grid.addEventListener('mouseenter', () => {
-            changeColor(grid);
+            greyScale(grid);
         });
         container.appendChild(grid);
     }
 }
 
 function changeColor(grid) {
-    grid.style.backgroundColor = 'red';
+    randColor = "#" + ((1<<24)*Math.random() | 0).toString(16);
+    grid.style.backgroundColor = randColor;
+}
+
+function greyScale(grid) {
+    if (grid.style.backgroundColor) {
+        let shade = Number(grid.style.backgroundColor.slice(-4,-1));
+        if (shade < 1.0) {
+            grid.style.backgroundColor = `rgba(0, 0, 0, ${shade + 0.1})`;
+        }
+    }
+    else {
+        grid.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
+    }
 }
 
 function changeSize() {
@@ -41,6 +52,7 @@ function changeSize() {
         alert('Please enter a number between 0 and 64.');
     }
     else {
+        removeGrid();
         generateGrid(n);
     }
 }
