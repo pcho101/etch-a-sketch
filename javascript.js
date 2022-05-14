@@ -1,7 +1,13 @@
 const body = document.querySelector('body');
 const container = document.querySelector('#container');
 const button = document.createElement('button');
-const gridSize = 16;
+const slider = document.querySelector('#gridSize');
+
+slider.addEventListener('change', () => {
+    let gridSize = slider.value;
+    removeGrid();
+    generateGrid(gridSize);
+});
 
 body.prepend(button);
 button.textContent = 'Change Size';
@@ -64,4 +70,4 @@ function removeGrid() {
     }
 }
 
-generateGrid(gridSize);
+generateGrid(16);
