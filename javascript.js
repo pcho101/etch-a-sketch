@@ -1,4 +1,4 @@
-const container = document.querySelector('#container');
+const container = document.querySelector('.container');
 const slider = document.querySelector('#gridSize');
 const color = document.querySelector('#color');
 const rainbow = document.querySelector('#rainbow');
@@ -8,7 +8,7 @@ const reset = document.querySelector('#reset');
 const customColor = document.querySelector('#customColor');
 
 let gridSize = 16;
-let mode = 'color'; //color, rainbow, grey
+let mode = 'color'; 
 
 slider.addEventListener('change', () => {
     gridSize = slider.value;
@@ -19,16 +19,13 @@ slider.addEventListener('change', () => {
 reset.addEventListener('click', () => {
     removeGrid();
     generateGrid(gridSize);
+    mode = 'color'; 
 });
 
 color.addEventListener('click', () => mode = 'color');
 rainbow.addEventListener('click', () => mode = 'rainbow');
 grey.addEventListener('click', () => mode = 'grey');
 eraser.addEventListener('click', () => mode = 'eraser');
-
-container.style.display = 'grid';
-container.style.width = '500px';
-container.style.height = '500px';
 
 function generateGrid(gridSize) {
     container.style.gridTemplateRows = `repeat(${gridSize}, 1fr)`;
@@ -44,7 +41,6 @@ function generateGrid(gridSize) {
 
 function paint() {
     if (mode == 'color') {
-        // this.style.backgroundColor = 'black';
         pickColor(this);
     }
     else if (mode == 'rainbow') {

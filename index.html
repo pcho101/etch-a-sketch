@@ -3,14 +3,15 @@
     <head>
         <meta charset="UTF-8">
         <title>Etch-A-Sketch</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap" rel="stylesheet">
         <script src="javascript.js" defer></script>
         <link rel="stylesheet" href="style.css">
     </head>
 
     <body>
-        <div class="color-container">
-            <input id="customColor" type="color">
-        </div>
+        <h1>Etch-A-Sketch</h1>
         <div class="button-container">
             <button id="color">Color</button>
             <button id="rainbow">Rainbow</button>
@@ -18,9 +19,12 @@
             <button id="eraser">Eraser</button>
             <button id="reset">Reset</button>
         </div>
+        <div class="color-container">
+            <input id="customColor" type="color">
+        </div>
         <div class="slider">
             <input id="gridSize" type="range" min="8" max="64" step="1" value="16">
         </div>
-        <div id="container"></div>
+        <div class="container"></div>
     </body>
 </html>

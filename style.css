@@ -1,0 +1,58 @@
+* {
+    background-color: whitesmoke;
+    font-family: 'Finger Paint', cursive;
+    font-weight: bold;
+}
+
+body {
+    text-align: center;
+}
+
+h1 {
+    font-size: 36px;
+}
+
+.button-container {
+    padding: 8px;
+}
+
+button {
+    background-color: forestgreen;
+    color: white;
+    padding: 8px 16px;
+    font-size: 16px;
+    opacity: 0.65;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 1;
+}
+
+.color-container {
+    padding: 8px;
+}
+
+.slider {
+    padding: 8px;
+}
+
+.container {
+    display: grid;
+    text-align: center;
+    margin: auto;
+    height: 500px;
+    width: 500px;
+    box-shadow: 0px 0px 15px 3px burlywood;
+}
+
+.grid {
+    background-color: white;
+}
+
+.grid:hover {
+    transform: scale(1.1);
+    border-color: white;
+    box-shadow: 0 0 1rem white;
+}
