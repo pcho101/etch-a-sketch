@@ -1,17 +1,24 @@
 const body = document.querySelector('body');
 const container = document.querySelector('#container');
-const button = document.createElement('button');
 const slider = document.querySelector('#gridSize');
+const reset = document.querySelector('#reset');
+
+let gridSize = 16;
 
 slider.addEventListener('change', () => {
-    let gridSize = slider.value;
+    gridSize = slider.value;
     removeGrid();
     generateGrid(gridSize);
 });
 
-body.prepend(button);
-button.textContent = 'Change Size';
-button.addEventListener('click', changeSize);
+reset.addEventListener('click', () => {
+    removeGrid();
+    generateGrid(gridSize);
+});
+
+// body.prepend(button);
+// button.textContent = 'Change Size';
+// button.addEventListener('click', changeSize);
 
 container.style.display = 'grid';
 container.style.width = '500px';
@@ -48,25 +55,24 @@ function greyScale(grid) {
     }
 }
 
-function changeSize() {
-    let userInput = prompt('Select size of grid. Max 64.');
-    let n = parseInt(userInput);
-    if (isNaN(n)) {
-        alert('Please enter a number.');
-    }
-    else if (n > 64 || n < 0) {
-        alert('Please enter a number between 0 and 64.');
-    }
-    else {
-        removeGrid();
-        generateGrid(n);
-    }
-}
+// function changeSize() {
+//     let userInput = prompt('Select size of grid. Max 64.');
+//     let n = parseInt(userInput);
+//     if (isNaN(n)) {
+//         alert('Please enter a number.');
+//     }
+//     else if (n > 64 || n < 0) {
+//         alert('Please enter a number between 0 and 64.');
+//     }
+//     else {
+//         removeGrid();
+//         generateGrid(n);
+//     }
+// }
 
 function removeGrid() {
-    const myNode = document.getElementById('container');
-    while (myNode.firstChild) {
-        myNode.removeChild(myNode.lastChild);
+    while (container.firstChild) {
+        container.removeChild(container.lastChild);
     }
 }
 
