@@ -1,4 +1,3 @@
-const body = document.querySelector('body');
 const container = document.querySelector('#container');
 const slider = document.querySelector('#gridSize');
 const color = document.querySelector('#color');
@@ -6,6 +5,7 @@ const rainbow = document.querySelector('#rainbow');
 const grey = document.querySelector('#grey-scale');
 const eraser = document.querySelector('#eraser');
 const reset = document.querySelector('#reset');
+const customColor = document.querySelector('#customColor');
 
 let gridSize = 16;
 let mode = 'color'; //color, rainbow, grey
@@ -44,7 +44,8 @@ function generateGrid(gridSize) {
 
 function paint() {
     if (mode == 'color') {
-        this.style.backgroundColor = 'black';
+        // this.style.backgroundColor = 'black';
+        pickColor(this);
     }
     else if (mode == 'rainbow') {
         changeColor(this);
@@ -57,16 +58,26 @@ function paint() {
     }
 }
 
+function pickColor(grid) {
+    grid.style.backgroundColor = customColor.value;
+}
+
 function changeColor(grid) {
     randColor = "#" + ((1<<24)*Math.random() | 0).toString(16);
     grid.style.backgroundColor = randColor;
 }
 
 function greyScale(grid) {
+    if (grid.style.backgroundColor == 'rgb(0, 0, 0)') {
+        return
+    }
     if (grid.style.backgroundColor) {
         let shade = Number(grid.style.backgroundColor.slice(-4,-1));
         if (shade < 1.0) {
             grid.style.backgroundColor = `rgba(0, 0, 0, ${shade + 0.1})`;
+        }
+        else {
+            grid.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
         }
     }
     else {
