@@ -1,9 +1,14 @@
 const body = document.querySelector('body');
 const container = document.querySelector('#container');
 const slider = document.querySelector('#gridSize');
+const color = document.querySelector('#color');
+const rainbow = document.querySelector('#rainbow');
+const grey = document.querySelector('#grey-scale');
+const eraser = document.querySelector('#eraser');
 const reset = document.querySelector('#reset');
 
 let gridSize = 16;
+let mode = 'color'; //color, rainbow, grey
 
 slider.addEventListener('change', () => {
     gridSize = slider.value;
@@ -16,9 +21,10 @@ reset.addEventListener('click', () => {
     generateGrid(gridSize);
 });
 
-// body.prepend(button);
-// button.textContent = 'Change Size';
-// button.addEventListener('click', changeSize);
+color.addEventListener('click', () => mode = 'color');
+rainbow.addEventListener('click', () => mode = 'rainbow');
+grey.addEventListener('click', () => mode = 'grey');
+eraser.addEventListener('click', () => mode = 'eraser');
 
 container.style.display = 'grid';
 container.style.width = '500px';
@@ -31,10 +37,23 @@ function generateGrid(gridSize) {
     for (let i = 0; i < gridSize * gridSize; i++) {
         let grid = document.createElement('div');
         grid.classList.add('grid');
-        grid.addEventListener('mouseenter', () => {
-            greyScale(grid);
-        });
+        grid.addEventListener('mouseenter', paint);
         container.appendChild(grid);
+    }
+}
+
+function paint() {
+    if (mode == 'color') {
+        this.style.backgroundColor = 'black';
+    }
+    else if (mode == 'rainbow') {
+        changeColor(this);
+    }
+    else if (mode == 'grey'){
+        greyScale(this);
+    }
+    else {
+        this.style.backgroundColor = '';
     }
 }
 
@@ -54,21 +73,6 @@ function greyScale(grid) {
         grid.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
     }
 }
-
-// function changeSize() {
-//     let userInput = prompt('Select size of grid. Max 64.');
-//     let n = parseInt(userInput);
-//     if (isNaN(n)) {
-//         alert('Please enter a number.');
-//     }
-//     else if (n > 64 || n < 0) {
-//         alert('Please enter a number between 0 and 64.');
-//     }
-//     else {
-//         removeGrid();
-//         generateGrid(n);
-//     }
-// }
 
 function removeGrid() {
     while (container.firstChild) {
